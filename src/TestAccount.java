@@ -1,7 +1,7 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Test {
+public class TestAccount {
     public static void main(String[] args) {
         // Instantiate the Account class
         Account myAccount = new Account(
@@ -19,5 +19,7 @@ public class Test {
 
         // contact info
         myAccount.getContact();
+
+        myAccount.printProperties();
     }
 }

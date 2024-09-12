@@ -1,3 +1,4 @@
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -36,5 +37,20 @@ public class Account {
         System.out.println("Phone Number: " + phoneNumber);
         System.out.println("Email Address: " + emailAddress);
     }
+    public void printProperties() {
+        Class<?> clazz = this.getClass();
+        System.out.println("Class Name: " + clazz.getName());
 
+        Field[] fields = clazz.getDeclaredFields();
+
+        for (Field field : fields) {
+            field.setAccessible(true);  // Allow access to private fields
+            try {
+                Object value = field.get(this);
+                System.out.println(field.getName() + " = " + value);
+            } catch (IllegalAccessException e) {
+                System.out.println("Could not access field: " + field.getName());
+            }
+        }
+    }
 }
