@@ -1,6 +1,10 @@
+package com.example.bankApplication.model;
+
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Account {
     // properties
@@ -25,32 +29,32 @@ public class Account {
 
     //method 1 get summary
     public void displaySummary() {
-        System.out.println("Account Number: " + accountNumber);
-        System.out.println("Account Holder: " + longName);
+        System.out.println("com.example.bankApplication.model.Account Number: " + accountNumber);
+        System.out.println("com.example.bankApplication.model.Account Holder: " + longName);
         System.out.println("Current Interest Rate: " + interestRate);
         System.out.println("Current Balance: " + balance);
-        System.out.println("Account Open Date: " + openDate);
+        System.out.println("com.example.bankApplication.model.Account Open Date: " + openDate);
     }
 
     public void getContact() {
-        System.out.println("Account Holder:" + longName);
+        System.out.println("com.example.bankApplication.model.Account Holder:" + longName);
         System.out.println("Phone Number: " + phoneNumber);
         System.out.println("Email Address: " + emailAddress);
     }
-    public void printProperties() {
+    public Map<String, Object> printProperties() {
+        Map<String, Object> properties = new HashMap<>();
         Class<?> clazz = this.getClass();
-        System.out.println("Class Name: " + clazz.getName());
-
         Field[] fields = clazz.getDeclaredFields();
 
         for (Field field : fields) {
             field.setAccessible(true);  // Allow access to private fields
             try {
                 Object value = field.get(this);
-                System.out.println(field.getName() + " = " + value);
+                properties.put(field.getName(), value);
             } catch (IllegalAccessException e) {
-                System.out.println("Could not access field: " + field.getName());
+                properties.put(field.getName(), "Could not access");
             }
         }
+        return properties;  // Return the properties as a Map
     }
 }

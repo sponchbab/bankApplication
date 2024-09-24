@@ -1,3 +1,5 @@
+import com.example.bankApplication.model.Account;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -14,7 +16,7 @@ public class Certificate extends Account implements AccountType{
     }
 
     @Override public void accountType() {
-        System.out.println("Account Type: Certificate of Deposit");
+        System.out.println("com.example.bankApplication.model.Account Type: Certificate of Deposit");
     }
 
     @Override public void term() {
